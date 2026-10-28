@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GDG on Campus Poornima University</title>
+  <meta name="description" content="A student developer community at Poornima University. Learn web, AI, cloud and mobile by building real projects together.">
+  <meta name="theme-color" content="#F1F4F8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    try { var t = localStorage.getItem('gdg-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="wrap nav__bar">
+      <a class="brand" href="#top" aria-label="GDG on Campus Poornima University, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="3" y="3" width="12" height="12" rx="6" fill="var(--blue)"/>
+          <rect x="17" y="3" width="12" height="12" fill="var(--red)"/>
+          <rect x="3" y="17" width="12" height="12" fill="var(--yellow)"/>
+          <rect x="17" y="17" width="12" height="12" rx="6" fill="var(--green)"/>
+        </svg>
+        <span class="brand__text">GDG on Campus<small>Poornima University</small></span>
+      </a>
+
+      <nav class="nav__links" id="menu" aria-label="Main">
+        <a href="#tracks">Tracks</a>
+        <a href="#semester">Semester</a>
+        <a href="#events">Events</a>
+        <a href="#team">Team</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch colour theme">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="sun" d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <a class="btn btn--small" href="#join">Join</a>
+        <button class="icon-btn nav__burger" id="menuToggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <h1>Poornima's student developers, building in the open.</h1>
+          <p class="lead">GDG on Campus is a student community for learning Google technologies by making real things: websites, AI apps, cloud backends and mobile apps. Beginners and experienced builders sit at the same table.</p>
+          <div class="hero__cta">
+            <a class="btn" href="#join">Join the community</a>
+            <a class="btn btn--ghost" href="#tracks">See what we build</a>
+          </div>
+        </div>
+        <div class="hero__stage">
+          <canvas id="pixels" aria-label="Pixel grid spelling GDG. Move your pointer over it to paint." role="img"></canvas>
+          <p class="hint" id="pixelHint">Move over the grid to paint. Click to clear.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKS -->
+    <section class="section" id="tracks">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>Four tracks. Pick one, or switch halfway.</h2>
+          <p>Each track runs as hands-on sessions where you write code from the first minute.</p>
+        </div>
+
+        <div class="tracks">
+          <div class="tabs" role="tablist" aria-label="Tracks">
+            <button class="tab" role="tab" id="tab-web" aria-controls="panel" aria-selected="true" data-track="web"><i style="--c:var(--blue)"></i>Web</button>
+            <button class="tab" role="tab" id="tab-ai" aria-controls="panel" aria-selected="false" tabindex="-1" data-track="ai"><i style="--c:var(--red)"></i>AI and ML</button>
+            <button class="tab" role="tab" id="tab-cloud" aria-controls="panel" aria-selected="false" tabindex="-1" data-track="cloud"><i style="--c:var(--yellow)"></i>Cloud</button>
+            <button class="tab" role="tab" id="tab-mobile" aria-controls="panel" aria-selected="false" tabindex="-1" data-track="mobile"><i style="--c:var(--green)"></i>Mobile</button>
+          </div>
+
+          <div class="panel" id="panel" role="tabpanel" aria-labelledby="tab-web" tabindex="0">
+            <div class="panel__text">
+              <h3 id="panelTitle"></h3>
+              <p id="panelBody"></p>
+              <p class="panel__label">Things you could build</p>
+              <ul id="panelList"></ul>
+            </div>
+            <figure class="code">
+              <figcaption>
+                <span id="codeName"></span>
+                <button class="copy" id="copyBtn" type="button">Copy</button>
+              </figcaption>
+              <pre><code id="codeBody"></code></pre>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEMESTER -->
+    <section class="section section--tint" id="semester">
+      <div class="wrap semester">
+        <div class="section__head">
+          <h2>How a semester runs</h2>
+          <p>Learn something on Monday, ship something by the end of the month.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="steps__n" style="--c:var(--blue)">1</span>
+            <div>
+              <h3>Learn together</h3>
+              <p>Short, hands-on sessions led by core team members and guest speakers. Bring a laptop. You leave with working code, not slides.</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__n" style="--c:var(--yellow)">2</span>
+            <div>
+              <h3>Build in small teams</h3>
+              <p>Form a team of three or four, pick a problem from campus life, and build a first version. Mentors review your work along the way.</p>
+            </div>
+          </li>
+          <li>
+            <span class="steps__n" style="--c:var(--green)">3</span>
+            <div>
+              <h3>Show what you made</h3>
+              <p>Demo your project to the community and push it to GitHub. Your repository becomes a line on your resume.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>On the calendar</h2>
+          <p>Dates are posted in the WhatsApp group first. Filter by the kind of event you want.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter events">
+          <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-filter="Workshop" aria-pressed="false">Workshops</button>
+          <button class="chip" type="button" data-filter="Build" aria-pressed="false">Build nights</button>
+          <button class="chip" type="button" data-filter="Showcase" aria-pressed="false">Showcases</button>
+        </div>
+        <ul class="events" id="eventList" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section section--tint" id="team">
+      <div class="wrap team">
+        <div class="team__copy">
+          <h2>The 2026–27 core team is being chosen right now.</h2>
+          <p>Applicants are going through the selection rounds. Names and roles will appear here as soon as the final round is done.</p>
+        </div>
+        <ul class="seats" aria-label="Core team roles">
+          <li style="--c:var(--blue)"><b>Technical Lead</b><span>Guides the tracks and reviews builds</span></li>
+          <li style="--c:var(--red)"><b>Design and media</b><span>Posters, reels and event visuals</span></li>
+          <li style="--c:var(--yellow)"><b>Events and operations</b><span>Venues, schedules and speakers</span></li>
+          <li style="--c:var(--green)"><b>Outreach and content</b><span>Newsletters, socials and partners</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap faq">
+        <div class="section__head">
+          <h2>Before you join</h2>
+        </div>
+        <div class="faq__list">
+          <details>
+            <summary>Do I need to know how to code?</summary>
+            <p>No. The Web and Mobile tracks start from the basics. If you already build projects, join a team and help others or take on a harder problem.</p>
+          </details>
+          <details>
+            <summary>Which branches can join?</summary>
+            <p>Any student who wants to build with technology. Projects often need design, writing and research as much as code.</p>
+          </details>
+          <details>
+            <summary>What do I need to bring?</summary>
+            <p>A laptop and a free GitHub account. Tools and accounts we use for each session are shared in the group beforehand.</p>
+          </details>
+          <details>
+            <summary>Is this an official Google programme?</summary>
+            <p>Google Developer Groups on Campus is a Google programme run by students at universities worldwide. This website is a student-built project for the Poornima University chapter.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="join" id="join">
+      <div class="wrap join__box">
+        <div>
+          <h2>Come build with us.</h2>
+          <p>Event dates, results and venue details go out in the community group first.</p>
+        </div>
+        <div class="join__actions">
+          <a class="btn btn--light" id="waBtn" href="#" hidden>Open the WhatsApp group</a>
+          <a class="btn btn--light" id="mailBtn" href="mailto:dsc@poornima.edu.in">Email the team</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__row">
+      <p>GDG on Campus, Poornima University, Jaipur.</p>
+      <p>Built by Mohammad Tauffique. Google and Google Developer Groups are trademarks of Google LLC. This is an independent student project.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
